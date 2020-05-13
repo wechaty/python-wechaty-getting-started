@@ -39,6 +39,13 @@ make install
 make bot
 ```
 
+## Wechaty Getting Started in Multiple Languages
+
+- [TypeScript Wechaty Getting Started](https://github.com/wechaty/wechaty-getting-started)
+- [Python Wechaty Getting Started](https://github.com/wechaty/python-wechaty-getting-started)
+- [Java Wechaty Getting Started](https://github.com/wechaty/java-wechaty-getting-started)
+- [Go Wechaty Getting Started](https://github.com/wechaty/go-wechaty-getting-started)
+
 ## Copyright & License
 
 - Code & Docs © 2020-now Wechaty <https://github.com/wechaty>
