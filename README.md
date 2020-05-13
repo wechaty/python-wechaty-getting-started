@@ -41,6 +41,6 @@ make bot
 
 ## Copyright & License
 
-- Code & Docs © 2020-now Wechaty
+- Code & Docs © 2020-now Wechaty <https://github.com/wechaty>
 - Code released under the Apache-2.0 License
 - Docs released under Creative Commons
