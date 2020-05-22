@@ -48,18 +48,6 @@ Wechaty is a RPA SDK for Wechat **Individual** Account that can help you create 
    python examples/ding-dong-bot.py
    ```
 
-## Usages
-
-### Wechaty
-
-
-
-### Contact
-
-- 
-
-
-
 ## The World's Shortest Python ChatBot: 6 lines of Code
 
 ```python
