@@ -85,6 +85,7 @@ make install
 ## Run
 
 ```shell
+export WECHATY_PUPPET_HOSTIE_TOKEN=your_token_at_here
 make bot
 ```
 
