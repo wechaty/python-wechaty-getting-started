@@ -11,6 +11,55 @@ Python Wechaty Starter Project Template that Works Out-of-the-Box
 
 Wechaty is a RPA SDK for Wechat **Individual** Account that can help you create a chatbot in 6 lines of Python.
 
+## Quick Start
+
+#### Requirements
+
+1. python3.7 +
+
+#### Run
+
+1. **Clone python-wechaty-getting-started repository**
+
+   ```shell
+   git clone https://github.com/wechaty/python-wechaty-getting-started
+   cd python-wechaty-getting-started
+   ```
+
+2. Install Dependencies
+
+   ```shell
+   make install
+   # or
+   pip install -r requirements.txt
+   ```
+
+3. Set token for your bot
+
+   ```python
+   token = 'your-token-here'
+   ```
+
+4. Running the bot
+
+   ```shell
+   make bot
+   # or
+   python examples/ding-dong-bot.py
+   ```
+
+## Usages
+
+### Wechaty
+
+
+
+### Contact
+
+- 
+
+
+
 ## The World's Shortest Python ChatBot: 6 lines of Code
 
 ```python
