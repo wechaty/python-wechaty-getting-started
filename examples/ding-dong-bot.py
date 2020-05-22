@@ -27,29 +27,22 @@ async def message(msg: Message):
             Room, Contact] = from_contact if room is None else room
         await conversationer.ready()
         await conversationer.say('dong')
-        # await conversationer.say('🤔')
-        # file_box = FileBox.from_url(
-        #     'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/'
-        #     'u=1116676390,2305043183&fm=26&gp=0.jpg',
-        #     name='ding-dong.jpg')
-        # file_box = FileBox.from_file('ding-dong-icon.png', name='ding-dong.png')
-        # await conversationer.say(file_box)
 
-
-async def do_some_thing():
-    """do some thing"""
-    friends = await bot.Contact.find_all()
-    log.info(friends)
-
-# puppet_options = PuppetOptions(token='your-token-here')
+        file_box = FileBox.from_url(
+            'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/'
+            'u=1116676390,2305043183&fm=26&gp=0.jpg',
+            name='ding-dong.jpg')
+        await conversationer.say(file_box)
 
 bot: Optional[Wechaty] = None
 
 
 async def main():
     """doc"""
+    # you can replace it with your own token str
     token = open('token.txt').readlines()[0]
     token = token.replace('\n', '')
+
     hostie_puppet = HostiePuppet(PuppetOptions(token))
     # pylint: disable=W0603
     global bot
