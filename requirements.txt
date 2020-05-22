@@ -1,1 +1,3 @@
+wechaty-puppet
 wechaty
+wechaty-puppet-hostie
