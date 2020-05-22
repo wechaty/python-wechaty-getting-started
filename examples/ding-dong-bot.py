@@ -1,4 +1,5 @@
 """doc"""
+import os
 import asyncio
 import logging
 from typing import Optional, Union
@@ -39,15 +40,13 @@ bot: Optional[Wechaty] = None
 
 async def main():
     """doc"""
-    # you can replace it with your own token str
-    token = open('token.txt').readlines()[0]
-    token = token.replace('\n', '')
+    # simplify token setting
+    token = 'your-token-here'
 
     hostie_puppet = HostiePuppet(PuppetOptions(token))
     # pylint: disable=W0603
     global bot
     bot = Wechaty(hostie_puppet).on('message', message)
     await bot.start()
-
 
 asyncio.run(main())
