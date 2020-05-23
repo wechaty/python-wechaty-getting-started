@@ -1,9 +1,8 @@
-# python-wechaty-getting-started
+# python-wechaty-getting-started ![PyPI Version](https://img.shields.io/pypi/v/wechaty?color=blue) [![Python 3.7](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/release/python-370/)
+
+![Python Wechaty](https://wechaty.github.io/python-wechaty/images/python-wechaty.png)
 
 Python Wechaty Starter Project Template that Works Out-of-the-Box
-
-![PyPI Version](https://img.shields.io/pypi/v/wechaty?color=blue)
-[![Python 3.7](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/release/python-370/)
 
 ## Connecting Chatbots
 
