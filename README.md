@@ -70,6 +70,7 @@ Wechaty.instance() // Global Instance
 
 ## Maintainers
 
+[@wechaty/python](https://github.com/orgs/wechaty/teams/python/members)
 
 ## Copyright & License
 
