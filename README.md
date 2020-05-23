@@ -11,15 +11,13 @@ Python Wechaty Starter Project Template that Works Out-of-the-Box
 
 Wechaty is a RPA SDK for Wechat **Individual** Account that can help you create a chatbot in 6 lines of Python.
 
+## Requirements
+
+1. python3.7+
+
 ## Quick Start
 
-#### Requirements
-
-1. python3.7 +
-
-#### Run
-
-1. **Clone python-wechaty-getting-started repository**
+1. Clone python-wechaty-getting-started repository
 
    ```shell
    git clone https://github.com/wechaty/python-wechaty-getting-started
@@ -36,13 +34,14 @@ Wechaty is a RPA SDK for Wechat **Individual** Account that can help you create 
 
 3. Set token for your bot
 
-   ```python
-   # examples/ding-dong-bot.py : func-> main()
-   # it must be donut token
-   token = 'your-token-here'
-   ```
+    ```sh
+    # examples/ding-dong-bot.py : func-> main()
+    # it must be donut token
+    export WECHATY_PUPPET=wechaty-puppet-hostie
+    export WECHATY_PUPPET_HOSTIE_TOKEN=your_token_at_here
+    ```
 
-4. Running the bot
+4. Run the bot
 
    ```shell
    make bot
@@ -62,23 +61,6 @@ Wechaty.instance() // Global Instance
   .start()
 ```
 
-## Requirements
-
-1. Python 3.7+
-
-## Install
-
-```shell
-make install
-```
-
-## Run
-
-```shell
-export WECHATY_PUPPET_HOSTIE_TOKEN=your_token_at_here
-make bot
-```
-
 ## Wechaty Getting Started in Multiple Languages
 
 - [TypeScript Wechaty Getting Started](https://github.com/wechaty/wechaty-getting-started)
@@ -86,8 +68,11 @@ make bot
 - [Java Wechaty Getting Started](https://github.com/wechaty/java-wechaty-getting-started)
 - [Go Wechaty Getting Started](https://github.com/wechaty/go-wechaty-getting-started)
 
+## Maintainers
+
+
 ## Copyright & License
 
-- Code & Docs © 2020-now Wechaty <https://github.com/wechaty>
+- Code & Docs © 2020 Wechaty <https://github.com/wechaty>
 - Code released under the Apache-2.0 License
 - Docs released under Creative Commons
