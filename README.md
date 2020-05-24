@@ -2,6 +2,8 @@
 
 ![Python Wechaty](https://wechaty.github.io/python-wechaty/images/python-wechaty.png)
 
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/wechaty/python-wechaty-getting-started)
+
 Python Wechaty Starter Project Template that Works Out-of-the-Box
 
 ## Connecting Chatbots
