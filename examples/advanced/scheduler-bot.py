@@ -3,12 +3,14 @@
 import asyncio
 import logging
 import os
-from typing import Optional
+from typing import Optional, Union
 
 from wechaty_puppet import ScanStatus  # type: ignore
 
-from wechaty import Wechaty, Contact
+from wechaty import Wechaty, Contact, Room
 from wechaty.user import Message
+
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger(__name__)
@@ -24,29 +26,16 @@ class MyBot(Wechaty):
         self.busy = False
         self.auto_reply_comment = "Automatic Reply: I cannot read your message because I'm busy now, will talk to you when I get back."
 
-    async def on_message(self, msg: Message):
-        """
-        listen for message event
-        """
+    async def message(msg: Message):
+        """back on message"""
         from_contact = msg.talker()
         text = msg.text()
         room = msg.room()
-        to = msg.to()
-        if room is None and to.contact_id == self.contact_id:
-            # say msg to the bot
-            if text == '#status':
-                msg = 'busy' if self.busy else 'free'
-                await from_contact.say(
-                    f'My status: {msg}')
-                await from_contact.say(self.auto_reply_comment)
-            elif text == '#free':
-                await from_contact.say('auto reply stopped.')
-            elif text == '#busy':
-                self.busy= True
-                await from_contact.say('auto reply enabled')
-            else:
-                await from_contact.say(self.auto_reply_comment)
-
+        if text == '#ding':
+            conversation: Union[
+                Room, Contact] = from_contact if room is None else room
+            await conversation.ready()
+            await conversation.say('dong')
 
     async def on_login(self, contact: Contact):
         print(f'user: {contact} has login')
@@ -61,11 +50,24 @@ class MyBot(Wechaty):
 bot: Optional[MyBot] = None
 
 
+async def tick(bot: Wechaty):
+    room = bot.Room.load('room-id')
+    await room.ready()
+    from datetime import datetime
+    await room.say(f'say ding automatically, {datetime.now()}')
+    await room.say('ding')
+
+
 async def main():
     """doc"""
     # pylint: disable=W0603
     global bot
     bot = MyBot()
+
+    scheduler = AsyncIOScheduler()
+    scheduler.add_job(tick, 'interval', seconds=10, args=[bot])
+
+    scheduler.start()
     await bot.start()
 
 

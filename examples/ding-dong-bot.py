@@ -27,13 +27,13 @@ async def message(msg: Message):
             Room, Contact] = from_contact if room is None else room
         await conversation.ready()
         await conversation.say('dong')
-        file_box = FileBox.from_url(
-            'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/'
-            'u=1116676390,2305043183&fm=26&gp=0.jpg',
-            name='ding-dong.jpg')
-        await conversation.say(file_box)
+        # file_box = FileBox.from_url(
+        #     'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/'
+        #     'u=1116676390,2305043183&fm=26&gp=0.jpg',
+        #     name='ding-dong.jpg')
+        # await conversation.say(file_box)
 
-os.environ['WECHATY_PUPPET_HOSTIE_TOKEN'] = 'your-token-here'
+os.environ['WECHATY_PUPPET_HOSTIE_TOKEN'] = 'donut-test-user-6014'
 bot: Optional[Wechaty] = None
 
 
