@@ -6,7 +6,7 @@ Please follow the same directory structure from our [TS wechaty-getting-started]
 
 Put your example bot into one of the following directories (the one you believe it's most suitable):
 
-1. basic/
-1. advanced/
-1. professional/
-1. hird-party/
+1. `basic/`
+1. `advanced/`
+1. `professional/`
+1. `hird-party/`
