@@ -22,6 +22,7 @@ import os
 import asyncio
 
 from wechaty import (
+    Contact,
     FileBox,
     Message,
     Wechaty,
@@ -43,6 +44,22 @@ async def on_message(msg: Message):
         await msg.say(file_box)
 
 
+async def on_scan(qrcode: str, status: int):
+    """
+    Scan Handler for the Bot
+    """
+    print(qrcode, status)
+    # TODO: To be written
+
+
+async def on_login(user: Contact):
+    """
+    Login Handler for the Bot
+    """
+    print(user)
+    # TODO: To be written
+
+
 async def main():
     """
     Async Main Entry
@@ -58,7 +75,11 @@ async def main():
         ''')
 
     bot = Wechaty()
-    bot.on('message', on_message)
+
+    bot.on('scan',      on_scan)
+    bot.on('login',     on_login)
+    bot.on('message',   on_message)
+
     await bot.start()
 
     print('[Python Wechaty] Ding Dong Bot started.')
