@@ -3,8 +3,8 @@ all: install example
 
 .PHONY: install
 install:
-	pip install -r requirements.txt
+	pip3 install -r requirements.txt
 
 .PHONY: bot
 bot:
-	python examples/ding-dong-bot.py
+	python3 examples/ding-dong-bot.py
