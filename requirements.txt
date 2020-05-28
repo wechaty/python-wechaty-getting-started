@@ -1,1 +1,1 @@
-wechaty~=0.4.9
+wechaty~=0.4.10
