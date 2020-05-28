@@ -9,6 +9,13 @@ install:
 bot:
 	python3 examples/ding-dong-bot.py
 
+.PHONY: test
+test: pytest
+
+.PHONY: pytest
+pytest:
+	pytest
+
 .PHONY: version
 version:
 	@newVersion=$$(awk -F. '{print $$1"."$$2"."$$3+1}' < VERSION) \
