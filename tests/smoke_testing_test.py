@@ -6,8 +6,6 @@ Smoke Testing
 #     # Any,
 #     Iterable,
 # )
-import os
-
 from wechaty import (
     Wechaty
 )
