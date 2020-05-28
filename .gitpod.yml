@@ -1,0 +1,5 @@
+tasks:
+  - init: pyenv global $(pyenv versions | grep -Po '\d.\d.\d' | grep ^3 | head -1)
+  - command: make
+image:
+  file: .gitpod.Dockerfile

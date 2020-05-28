@@ -2,7 +2,6 @@
 # pylint: disable=R0801
 import asyncio
 import logging
-import os
 from typing import Optional
 
 from wechaty_puppet import ScanStatus  # type: ignore

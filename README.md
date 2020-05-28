@@ -1,9 +1,10 @@
-# python-wechaty-getting-started
+# python-wechaty-getting-started ![PyPI Version](https://img.shields.io/pypi/v/wechaty?color=blue) [![Python 3.7](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/release/python-370/)
+
+![Python Wechaty](https://wechaty.github.io/python-wechaty/images/python-wechaty.png)
+
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/wechaty/python-wechaty-getting-started)
 
 Python Wechaty Starter Project Template that Works Out-of-the-Box
-
-![PyPI Version](https://img.shields.io/pypi/v/wechaty?color=blue)
-[![Python 3.7](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/release/python-370/)
 
 ## Connecting Chatbots
 
@@ -74,6 +75,6 @@ Wechaty.instance() // Global Instance
 
 ## Copyright & License
 
-- Code & Docs © 2020 Wechaty <https://github.com/wechaty>
+- Code & Docs © 2020 Wechaty Contributors <https://github.com/wechaty>
 - Code released under the Apache-2.0 License
 - Docs released under Creative Commons

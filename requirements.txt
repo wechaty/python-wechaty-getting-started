@@ -1,3 +1,1 @@
-wechaty-puppet
-wechaty
-wechaty-puppet-hostie
+wechaty~=0.4.10
