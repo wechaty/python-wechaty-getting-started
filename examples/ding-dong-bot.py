@@ -34,18 +34,15 @@ async def on_message(msg: Message):
     """
     from_contact = msg.talker()
     text = msg.text()
-    room = msg.room()
-    if text == '#ding':
-        talker = from_contact if room is None else room
-        await talker.ready()
-        await talker.say('dong')
+    if text == 'ding':
+        await msg.say('dong')
 
         file_box = FileBox.from_url(
             'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/'
             'u=1116676390,2305043183&fm=26&gp=0.jpg',
             name='ding-dong.jpg'
         )
-        await talker.say(file_box)
+        await msg.say(file_box)
 
 
 async def main():
