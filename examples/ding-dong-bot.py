@@ -28,9 +28,9 @@ from wechaty import (
 )
 
 
-async def onMessage(msg: Message):
+async def on_message(msg: Message):
     """
-    Message Handler for Wechaty
+    Message Handler for the Bot
     """
     from_contact = msg.talker()
     text = msg.text()
@@ -43,27 +43,28 @@ async def onMessage(msg: Message):
         file_box = FileBox.from_url(
             'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/'
             'u=1116676390,2305043183&fm=26&gp=0.jpg',
-            name='ding-dong.jpg')
+            name='ding-dong.jpg'
+        )
         await talker.say(file_box)
 
 
 async def main():
     """
-    Main Entry for the Async Wechaty
+    Async Main Entry
     """
     #
     # Make sure we have set WECHATY_PUPPET_HOSTIE_TOKEN in the environment variables.
     #
-    WECHATY_PUPPET_HOSTIE_TOKEN = 'WECHATY_PUPPET_HOSTIE_TOKEN'
-    if WECHATY_PUPPET_HOSTIE_TOKEN not in os.environ:
-        print("""
+    if 'WECHATY_PUPPET_HOSTIE_TOKEN' not in os.environ:
+        print('''
             Error: WECHATY_PUPPET_HOSTIE_TOKEN is not found in the environment variables
             You need a TOKEN to run the Java Wechaty. Please goto our README for details
             https://github.com/wechaty/python-wechaty-getting-started/#wechaty_puppet_hostie_token
-        """)
+        ''')
 
     bot = Wechaty()
-    bot.on('message', onMessage)
+    bot.on('message', on_message)
     await bot.start()
+
 
 asyncio.run(main())
