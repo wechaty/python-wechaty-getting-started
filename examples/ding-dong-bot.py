@@ -32,9 +32,7 @@ async def on_message(msg: Message):
     """
     Message Handler for the Bot
     """
-    from_contact = msg.talker()
-    text = msg.text()
-    if text == 'ding':
+    if msg.text() == 'ding':
         await msg.say('dong')
 
         file_box = FileBox.from_url(
@@ -62,6 +60,8 @@ async def main():
     bot = Wechaty()
     bot.on('message', on_message)
     await bot.start()
+
+    print('[Python Wechaty] Ding Dong Bot started.')
 
 
 asyncio.run(main())
