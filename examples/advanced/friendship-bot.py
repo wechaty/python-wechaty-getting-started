@@ -15,9 +15,11 @@ limitations under the License.
 """
 import os
 import asyncio
-from typing import Optional, Union
+from typing import Optional
 
-from wechaty import Wechaty, Contact, Room, Friendship, FriendshipType
+from wechaty import (
+    Wechaty, Contact, Friendship, FriendshipType
+)
 
 
 class MyBot(Wechaty):
