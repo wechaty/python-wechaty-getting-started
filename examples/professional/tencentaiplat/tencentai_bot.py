@@ -24,41 +24,41 @@ async def message(msg: Message):
     from_contact = msg.talker()
     text = msg.text()
     room = msg.room()
-    conversationer: Union[
+    conversation: Union[
         Room, Contact] = from_contact if room is None else room
 
     global chat_friend
 
     if "#关闭闲聊" == text:
         try:
-            chat_friend.remove(conversationer)
+            chat_friend.remove(conversation)
         except Exception as e:
             return
-        await conversationer.ready()
-        await conversationer.say('好的，有需要随时叫我')
+        await conversation.ready()
+        await conversation.say('好的，有需要随时叫我')
         return
 
     elif "#开启闲聊" == text:
-        chat_friend.append(conversationer)
-        await conversationer.ready()
-        await conversationer.say('闲聊功能开启成功！现在你可以和我聊天啦！')
+        chat_friend.append(conversation)
+        await conversation.ready()
+        await conversation.say('闲聊功能开启成功！现在你可以和我聊天啦！')
         return
 
-    if conversationer in chat_friend:
+    if conversation in chat_friend:
         data = TencentAI(text)
-        await conversationer.ready()
-        await conversationer.say(data)
+        await conversation.ready()
+        await conversation.say(data)
         return
 
     if text == '#ding':
-        await conversationer.ready()
-        await conversationer.say('dong')
+        await conversation.ready()
+        await conversation.say('dong')
 
         file_box = FileBox.from_url(
             'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/'
             'u=1116676390,2305043183&fm=26&gp=0.jpg',
             name='ding-dong.jpg')
-        await conversationer.say(file_box)
+        await conversation.say(file_box)
 
 
 bot: Optional[Wechaty] = None
@@ -66,14 +66,9 @@ bot: Optional[Wechaty] = None
 
 async def main():
     """doc"""
-    # you can replace it with your own token str
-    token = open('token.txt').readlines()[0]
-    token = token.replace('\n', '')
-
-    hostie_puppet = HostiePuppet(PuppetOptions(token))
     # pylint: disable=W0603
     global bot
-    bot = Wechaty(hostie_puppet).on('message', message)
+    bot = Wechaty().on('message', message)
     await bot.start()
 
 
