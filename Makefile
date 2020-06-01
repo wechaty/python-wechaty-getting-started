@@ -14,7 +14,7 @@ test: pytest
 
 .PHONY: pytest
 pytest:
-	pytest
+	python3 -m pytest
 
 .PHONY: version
 version:
