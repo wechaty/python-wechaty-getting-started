@@ -3,6 +3,7 @@
 ![Python Wechaty](https://wechaty.github.io/python-wechaty/images/python-wechaty.png)
 
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/wechaty/python-wechaty-getting-started)
+[![Wechaty in Python](https://img.shields.io/badge/Wechaty-Python-blue)](https://github.com/wechaty/python-wechaty)
 
 Python Wechaty Starter Project Template that Works Out-of-the-Box
 
@@ -68,6 +69,14 @@ Wechaty.instance() // Global Instance
 - [Python Wechaty Getting Started](https://github.com/wechaty/python-wechaty-getting-started)
 - [Java Wechaty Getting Started](https://github.com/wechaty/java-wechaty-getting-started)
 - [Go Wechaty Getting Started](https://github.com/wechaty/go-wechaty-getting-started)
+
+## Badge
+
+[![Wechaty in Python](https://img.shields.io/badge/Wechaty-Python-blue)](https://github.com/wechaty/python-wechaty)
+
+```md
+[![Wechaty in Python](https://img.shields.io/badge/Wechaty-Python-blue)](https://github.com/wechaty/python-wechaty)
+```
 
 ## Maintainers
 
