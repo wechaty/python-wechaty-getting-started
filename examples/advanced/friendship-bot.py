@@ -15,12 +15,11 @@ limitations under the License.
 """
 import os
 import asyncio
-from typing import Optional, Union
+from typing import Optional
 
-from wechaty import Wechaty, Contact, Room
-from wechaty.user import Message
-
-from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from wechaty import (
+    Wechaty, Contact, Friendship, FriendshipType
+)
 
 
 class MyBot(Wechaty):
@@ -33,33 +32,41 @@ class MyBot(Wechaty):
         self.busy = False
         self.auto_reply_comment = "Automatic Reply: I cannot read your message because I'm busy now, will talk to you when I get back."
 
-    async def message(self, msg: Message):
-        """back on message"""
-        from_contact = msg.talker()
-        text = msg.text()
-        room = msg.room()
-        if text == '#ding':
-            conversation: Union[
-                Room, Contact] = from_contact if room is None else room
-            await conversation.ready()
-            await conversation.say('dong')
+    async def on_friendship(self, friendship: Friendship):
+        administrator = bot.Contact.load('admin-id')
+        await administrator.ready()
+
+        contact = friendship.contact()
+        await contact.ready()
+
+        log_msg = f'receive "friendship" message from {contact.name}'
+        await administrator.say(log_msg)
+
+        if friendship.type() == FriendshipType.FRIENDSHIP_TYPE_RECEIVE:
+            if friendship.hello() == 'ding':
+                log_msg = 'accepted automatically because verify messsage is "ding"'
+                print('before accept ...')
+                await friendship.accept()
+                # if want to send msg, you need to delay sometimes
+
+                print('waiting to send message ...')
+                await asyncio.sleep(3)
+                await contact.say('hello from wechaty ...')
+                print('after accept ...')
+            else:
+                log_msg = 'not auto accepted, because verify message is: ' + friendship.hello()
+
+        elif friendship.type() == FriendshipType.FRIENDSHIP_TYPE_CONFIRM:
+            log_msg = 'friend ship confirmed with ' + contact.name
+
+        print(log_msg)
+        await administrator.say(log_msg)
 
     async def on_login(self, contact: Contact):
         print(f'user: {contact} has login')
 
 
 bot: Optional[MyBot] = None
-
-
-async def tick(bot: Wechaty):
-    """
-    find a specific room, and say something to it.
-    """
-    room = bot.Room.load('room-id')
-    await room.ready()
-    from datetime import datetime
-    await room.say(f'it"s a new day, let"s welcome, now it"s {datetime.now()}')
-    await room.say('hello world !')
 
 
 async def main():
@@ -73,12 +80,8 @@ async def main():
 
     global bot
     bot = MyBot()
-
-    scheduler = AsyncIOScheduler()
-    scheduler.add_job(tick, 'interval', seconds=10, args=[bot])
-
-    scheduler.start()
     await bot.start()
 
 
 asyncio.run(main())
+
