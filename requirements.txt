@@ -1,1 +1,1 @@
-wechaty~=0.4.12
+wechaty~=0.5dev1
