@@ -24,36 +24,36 @@ __________________________________________________
 Hope you like it, and you are very welcome to
 upgrade me for more super powers!
 Please wait... I'm trying to login in..."""
-HELPER_CONTACT_NAME = '李卓桓'
+HELPER_CONTACT_NAME = '黄纯洪'
 
 print(welcome)
 log = get_logger('RoomBot')
 
 
-async def checkRoomJoin(bot, room, inviteeList, inviter):
+async def check_room_join(bot, room, invitee_list, inviter):
     try:
         user_self = bot.user_self()
         if inviter.id != user_self.contact_id:
             await room.say('RULE1: Invitation is limited to me, the owner only. '
                            'Please do not invite people without notify me.' + inviter)
             await room.say('Please contact me: by send "ding" to me, I will re-send you a invitation. '
-                           'Now I will remove you out, sorry.' + ''.join(inviteeList))
+                           'Now I will remove you out, sorry.' + ''.join(invitee_list))
             await room.topic('ding - warn ' + inviter.name())
             scheduler = AsyncIOScheduler()
-            for i in inviteeList:
+            for i in invitee_list:
                 scheduler.add_job(room.delete, args=[i], seconds=10)
             scheduler.start()
         else:
             await room.say('Welcome to my room! :)')
-            welcomeTopic = ', '.join(map(lambda c: c.name, inviteeList))
+            welcomeTopic = ', '.join(map(lambda c: c.name, invitee_list))
             await room.topic('ding - welcome ' + welcomeTopic)
     except Exception as e:
         log.exception(e)
 
 
-async def manageDingRoom(bot):
+async def manage_ding_room(bot):
     time.sleep(3)
-    log.info('Bot' + 'manageDingRoom()')
+    log.info('Bot' + 'manage_ding_room()')
     try:
         room = await bot.Room.find(topic='ding')
         if not room:
@@ -63,7 +63,7 @@ async def manageDingRoom(bot):
 
         def on_join(inviteeList, inviter):
             log.info('room.on(join) id:', room.room_id)
-            checkRoomJoin(bot, room, inviteeList, inviter)
+            check_room_join(bot, room, inviteeList, inviter)
 
         def on_leave(leaverList, remover):
             log.info('Bot' + 'Room EVENT: leave - "%s" leave(remover "%s"), bye bye' % (','.join(leaverList),
@@ -80,8 +80,8 @@ async def manageDingRoom(bot):
         log.exception(e)
 
 
-async def putInRoom(contact, room):
-    log.info('Bot' + 'putInRoom("%s", "%s")' % (contact.name(), await room.topic()))
+async def put_in_room(contact, room):
+    log.info('Bot' + 'put_in_room("%s", "%s")' % (contact.name(), await room.topic()))
     try:
         await room.add(contact)
         scheduler = AsyncIOScheduler()
@@ -91,40 +91,40 @@ async def putInRoom(contact, room):
         log.exception(e)
 
 
-async def getOutRoom(contact, room):
-    log.info('Bot' + 'getOutRoom("%s", "%s")' % (contact, room))
+async def get_out_room(contact, room):
+    log.info('Bot' + 'get_out_room("%s", "%s")' % (contact, room))
     try:
         await room.say('You said "ding" in my room, I will remove you out.')
         await room.delete(contact)
     except Exception as e:
-        log.exception('getOutRoom() exception: ', e)
+        log.exception('get_out_room() exception: ', e)
 
 
-def getHelperContact(bot):
-    log.info('Bot' + 'getHelperContact()')
+def get_helper_contact(bot):
+    log.info('Bot' + 'get_helper_contact()')
     return bot.Contact.find(HELPER_CONTACT_NAME)
 
 
-async def createDingRoom(bot, contact):
-    log.info('createDingRoom("%s")' % contact)
+async def create_ding_room(bot, contact):
+    log.info('create_ding_room("%s")' % contact)
     try:
-        helperContact = await getHelperContact(bot)
+        helperContact = await get_helper_contact(bot)
         if not helperContact:
-            log.warning('getHelperContact() found nobody')
+            log.warning('get_helper_contact() found nobody')
             await contact.say("""You don't have a friend called "%s", because create a new room at
             least need 3 contacts, please set [HELPER_CONTACT_NAME] in the code first!""" % HELPER_CONTACT_NAME)
             return
-        log.info('getHelperContact() ok. got: "%s"' % helperContact.name())
+        log.info('get_helper_contact() ok. got: "%s"' % helperContact.name())
         contactList = [contact, helperContact]
         await contact.say(
             """There isn't ding room. I'm trying to create a room with "{0}" and you""" % helperContact.name())
         room = await bot.Room.create(contactList, 'ding')
-        log.info('createDingRoom() new ding room created: "%s"' % room)
+        log.info('create_ding_room() new ding room created: "%s"' % room)
         await room.topic('ding - created')
         await room.say('ding - created')
         return room
     except Exception as e:
-        log.exception('getHelperContact() exception:', e)
+        log.exception('get_helper_contact() exception:', e)
 
 
 class MyBot(Wechaty):
@@ -145,11 +145,11 @@ class MyBot(Wechaty):
         log.info('bot ' + msg)
         await contact.say(msg)
 
-        msg = "setting to manageDingRoom() after 3 seconds..."
+        msg = "setting to manage_ding_room() after 3 seconds..."
         log.info('Bot' + msg)
         print(self.user_self())
         await contact.say(msg)
-        await manageDingRoom(self)
+        await manage_ding_room(self)
 
     async def on_room_join(self, room: Room, invitees: List[Contact],
                            inviter: Contact, date: datetime):
@@ -191,7 +191,7 @@ class MyBot(Wechaty):
         if re.search('^ding$', text):
             if room:
                 if re.search('^ding', await room.topic()):
-                    await getOutRoom(talker, room)
+                    await get_out_room(talker, room)
             else:
                 try:
                     dingRoom = await self.Room.find('^ding')
@@ -207,12 +207,12 @@ class MyBot(Wechaty):
                             log.info('Bot' + 'onMessage: add sender("%s") to dingRoom("%s")' % (
                                 talker.name, dingRoom.topic()))
                             await talker.say('ok, I will put you in ding room!')
-                            await putInRoom(talker, dingRoom)
+                            await put_in_room(talker, dingRoom)
                     else:
                         log.info('Bot' + 'onMessage: dingRoom not found, try to create one')
-                        newRoom = await createDingRoom(self, talker)
-                        print('createDingRoom id:', newRoom.id)
-                        await manageDingRoom(self)
+                        newRoom = await create_ding_room(self, talker)
+                        print('create_ding_room id:', newRoom.id)
+                        await manage_ding_room(self)
                 except Exception as e:
                     log.exception(e)
 
