@@ -8,8 +8,8 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 from wechaty import Contact, Room, Wechaty, get_logger, Message
 
-welcome = """=============== Powered by Wechaty ===============
--------- https://github.com/Chatie/wechaty --------
+welcome = """=============== Powered by Python-Wechaty ===============
+-------- https://github.com/Chatie/python-wechaty --------
 Hello,
 I'm a Wechaty Botie with the following super powers:
 1. Find a room
