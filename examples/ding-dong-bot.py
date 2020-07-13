@@ -39,7 +39,7 @@ async def on_message(msg: Message):
         await msg.say(file_box)
 
 
-async def on_scan(qrcode: str, status: int):
+async def on_scan(qrcode: str, status: int, data):
     """
     Scan Handler for the Bot
     """
