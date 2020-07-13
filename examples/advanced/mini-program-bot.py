@@ -3,6 +3,8 @@
 import asyncio
 import logging
 from typing import Optional, Union
+import json
+from dataclasses import asdict
 
 from wechaty_puppet import FileBox, ScanStatus  # type: ignore
 from wechaty_puppet import MessageType
@@ -34,33 +36,16 @@ class MyBot(Wechaty):
 
         if msg.type() == MessageType.MESSAGE_TYPE_MINI_PROGRAM:
             mini_program = await msg.to_mini_program()
-            await room.say(mini_program)
 
-        if text == 'send card':
-            # find one of my friend
-            contacts = await bot.Contact.find_all()
-            if contacts:
-                # send one of my friend to the talker
-                await from_contact.say(contacts[0])
-                print('have sended')
-        elif msg.type() == MessageType.MESSAGE_TYPE_IMAGE:
-            img = await msg.to_file_box()
-            await img.to_file(f'./{img.name}')
+            # save the mini-program data as string
+            mini_program_data = asdict(mini_program.payload)
 
-            await room.say(img)
+            # load the min-program
+            loaded_mini_program = self.MiniProgram.create_from_json(
+                payload_data=mini_program_data
+            )
 
-        elif msg.type() == MessageType.MESSAGE_TYPE_VIDEO:
-            video = await msg.to_file_box()
-            await video.to_file(f'./{video.name}')
-
-            await room.say(video)
-
-        elif msg.type() == MessageType.MESSAGE_TYPE_AUDIO:
-            audio = await msg.to_file_box()
-            # save the audio file as local file
-            await audio.to_file(f'./{audio.name}')
-
-        print('done')
+            await room.say(loaded_mini_program)
 
     async def on_login(self, contact: Contact):
         """login event. It will be triggered every time you login"""
