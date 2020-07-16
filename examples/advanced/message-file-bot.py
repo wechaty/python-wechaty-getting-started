@@ -29,15 +29,13 @@ class MyBot(Wechaty):
         from_contact = msg.talker()
         text = msg.text()
         room = msg.room()
+        if room:
+            await room.ready()
+
         # send contact-card
-        print(msg)
         if msg.type() == MessageType.MESSAGE_TYPE_CONTACT:
             # we can receive the contact-card event, and get the contact from message
             contact = await msg.to_contact()
-
-        # you can send all file to the specific room when you are at testing stage
-        room = self.Room.load('room-id')
-        await room.ready()
 
         if text == 'send card':
             # find one of my friend to send to `from_contact`
@@ -51,15 +49,18 @@ class MyBot(Wechaty):
             img = await msg.to_file_box()
             # save the image as local file
             await img.to_file(f'./{img.name}')
-            # send image file to the specific room
-            await room.say(img)
+            # send image file to the room
+            if room:
+                await room.say(img)
 
         elif msg.type() == MessageType.MESSAGE_TYPE_VIDEO:
             video = await msg.to_file_box()
             # save the video as local file
             await video.to_file(f'./{video.name}')
-            # send video file to the specific room
-            await room.say(video)
+
+            # send video file to the room
+            if room:
+                await room.say(video)
 
         elif msg.type() == MessageType.MESSAGE_TYPE_AUDIO:
             audio = await msg.to_file_box()
