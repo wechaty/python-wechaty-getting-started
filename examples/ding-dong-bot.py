@@ -43,7 +43,7 @@ async def on_scan(qrcode: str, status: int):
     """
     Scan Handler for the Bot
     """
-    print('Status: ' + status + ', View QR Code Online: https://wechaty.github.io/qrcode/' + qrcode)
+    print('Status: ' + status + ', View QR Code Online: https://wechaty.js.org/qrcode/' + qrcode)
 
 
 async def on_login(user: Contact):
