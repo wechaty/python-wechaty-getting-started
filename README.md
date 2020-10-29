@@ -17,6 +17,10 @@ Wechaty is a RPA SDK for Wechat **Individual** Account that can help you create 
 
 1. python3.7+
 
+## Live Coding Video Tutorial
+
+Here's a great live coding video tutorial from our Python Wechaty creator @wj-Mcat: <https://wechaty.js.org/2020/10/26/python-wechaty-live-coding/>
+
 ## Quick Start
 
 1. Clone python-wechaty-getting-started repository
