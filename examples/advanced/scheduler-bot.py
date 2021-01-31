@@ -64,11 +64,11 @@ async def tick(bot: Wechaty):
 
 async def main():
     """Async Main Entry"""
-    if 'WECHATY_PUPPET_HOSTIE_TOKEN' not in os.environ:
+    if 'WECHATY_PUPPET_SERVICE_TOKEN' not in os.environ:
         print('''
-            Error: WECHATY_PUPPET_HOSTIE_TOKEN is not found in the environment variables
+            Error: WECHATY_PUPPET_SERVICE_TOKEN is not found in the environment variables
             You need a TOKEN to run the Java Wechaty. Please goto our README for details
-            https://github.com/wechaty/python-wechaty-getting-started/#wechaty_puppet_hostie_token
+            https://github.com/wechaty/python-wechaty-getting-started/#wechaty_puppet_service_token
         ''')
 
     global bot

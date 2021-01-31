@@ -3,7 +3,6 @@ import logging
 from typing import Optional, Union
 
 from wechaty_puppet import PuppetOptions, FileBox  # type: ignore
-from wechaty_puppet_hostie import HostiePuppet  # type: ignore
 
 from wechaty import Wechaty, Contact
 from wechaty.user import Message, Room
