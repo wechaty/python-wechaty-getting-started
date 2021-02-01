@@ -43,8 +43,8 @@ Here's a great live coding video tutorial from our Python Wechaty creator @wj-Mc
     ```sh
     # examples/ding-dong-bot.py : func-> main()
     # it must be donut token
-    export WECHATY_PUPPET=wechaty-puppet-hostie
-    export WECHATY_PUPPET_HOSTIE_TOKEN=your_token_at_here
+    export WECHATY_PUPPET=wechaty-puppet-service
+    export WECHATY_PUPPET_SERVICE_TOKEN=your_token_at_here
     ```
 
 4. Run the bot
