@@ -33,7 +33,7 @@ class MyBot(Wechaty):
         self.auto_reply_comment = "Automatic Reply: I cannot read your message because I'm busy now, will talk to you when I get back."
 
     async def on_friendship(self, friendship: Friendship):
-        administrator = bot.Contact.load('admin-id')
+        administrator = bot.Contact.load('self.contact_id')
         await administrator.ready()
 
         contact = friendship.contact()
