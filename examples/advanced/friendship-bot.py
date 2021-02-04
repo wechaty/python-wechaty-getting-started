@@ -57,7 +57,7 @@ class MyBot(Wechaty):
                 log_msg = 'not auto accepted, because verify message is: ' + friendship.hello()
 
         elif friendship.type() == FriendshipType.FRIENDSHIP_TYPE_CONFIRM:
-            log_msg = 'friend ship confirmed with ' + contact.name
+            log_msg = 'friendship confirmed with ' + contact.name
 
         print(log_msg)
         await administrator.say(log_msg)
