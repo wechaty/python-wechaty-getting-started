@@ -13,6 +13,6 @@ from wechaty import (
 
 def test_smoke_testing() -> None:
     """ wechaty """
-    # os.environ['WECHATY_PUPPET_HOSTIE_TOKEN'] = 'test'
+    # os.environ['WECHATY_PUPPET_SERVICE_TOKEN'] = 'test'
     # bot = Wechaty()
     assert Wechaty, 'should be imported successfully'
