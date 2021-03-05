@@ -1,2 +1,1 @@
-wechaty~=0.6
-wechaty-puppet-service~=0.5.0dev
+wechaty~=0.7dev15

@@ -21,6 +21,7 @@ from wechaty import (
     FileBox,
     Message,
     Wechaty,
+    ScanStatus,
 )
 
 
@@ -39,11 +40,16 @@ async def on_message(msg: Message):
         await msg.say(file_box)
 
 
-async def on_scan(qrcode: str, status: int, data):
+async def on_scan(
+        qrcode: str,
+        status: ScanStatus,
+        _data,
+):
     """
     Scan Handler for the Bot
     """
-    print('Status: ' + status + ', View QR Code Online: https://wechaty.github.io/qrcode/' + qrcode)
+    print('Status: ' + str(status))
+    print('View QR Code Online: https://wechaty.js.org/qrcode/' + qrcode)
 
 
 async def on_login(user: Contact):
