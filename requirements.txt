@@ -1,1 +1,1 @@
-wechaty~=0.7dev16
+wechaty~=0.8
