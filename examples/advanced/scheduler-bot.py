@@ -33,7 +33,7 @@ class MyBot(Wechaty):
         self.busy = False
         self.auto_reply_comment = "Automatic Reply: I cannot read your message because I'm busy now, will talk to you when I get back."
 
-    async def message(self, msg: Message):
+    async def on_message(self, msg: Message):
         """back on message"""
         from_contact = msg.talker()
         text = msg.text()
