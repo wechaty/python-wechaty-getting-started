@@ -66,6 +66,7 @@ async def main():
     """
     #
     # Make sure we have set WECHATY_PUPPET_SERVICE_TOKEN in the environment variables.
+    # Learn more about services (and TOKEN) from https://wechaty.js.org/docs/puppet-services/
     #
     if 'WECHATY_PUPPET_SERVICE_TOKEN' not in os.environ:
         print('''
