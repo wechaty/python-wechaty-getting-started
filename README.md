@@ -40,6 +40,8 @@ Here's a great live coding video tutorial from our Python Wechaty creator @wj-Mc
 
 3. Set token for your bot
 
+You need a [Wechaty Puppet Service](https://wechaty.js.org/docs/puppet-services/) Token first, you can learn how to get it from our official docs at <https://wechaty.js.org/docs/puppet-services/>.
+    
     ```sh
     # examples/ding-dong-bot.py : func-> main()
     # it must be donut token
@@ -54,6 +56,8 @@ Here's a great live coding video tutorial from our Python Wechaty creator @wj-Mc
     # or
     export token=your_token_at_here
     ```
+
+> Learn more about the token related concepts by reading our blog post: [Introducing Wechaty Puppet Service (Providers), @huan, Jan 14, 2021](https://wechaty.js.org/2021/01/14/wechaty-puppet-service/)
 
 4. Run the bot
 
