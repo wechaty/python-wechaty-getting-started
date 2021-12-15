@@ -16,6 +16,8 @@ limitations under the License.
 import os
 import asyncio
 
+from urllib.parse import quote
+
 from wechaty import (
     Contact,
     FileBox,
@@ -49,7 +51,7 @@ async def on_scan(
     Scan Handler for the Bot
     """
     print('Status: ' + str(status))
-    print('View QR Code Online: https://wechaty.js.org/qrcode/' + qrcode)
+    print('View QR Code Online: https://wechaty.js.org/qrcode/' + quote(qrcode))
 
 
 async def on_login(user: Contact):
@@ -68,6 +70,15 @@ async def main():
     # Make sure we have set WECHATY_PUPPET_SERVICE_TOKEN in the environment variables.
     # Learn more about services (and TOKEN) from https://wechaty.js.org/docs/puppet-services/
     #
+    # It is highly recommanded to use token like [paimon] and [wxwork].
+    # Those types of puppet_service are supported natively.
+    # https://wechaty.js.org/docs/puppet-services/paimon
+    # https://wechaty.js.org/docs/puppet-services/wxwork
+    # 
+    # Replace your token here and umcommt that line, you can just run this python file successfully!
+    # os.environ['token'] = 'puppet_paimon_your_token'
+    # os.environ['token'] = 'puppet_wxwork_your_token'
+    #     
     if 'WECHATY_PUPPET_SERVICE_TOKEN' not in os.environ:
         print('''
             Error: WECHATY_PUPPET_SERVICE_TOKEN is not found in the environment variables
