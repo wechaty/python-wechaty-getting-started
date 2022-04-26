@@ -2,11 +2,11 @@ import asyncio
 import re
 import time
 from datetime import datetime
-from typing import List
+from typing import List, Optional
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-
 from wechaty import Contact, Room, Wechaty, get_logger, Message
+from wechaty_puppet import ScanStatus
 
 welcome = """=============== Powered by Python-Wechaty ===============
 -------- https://github.com/Chatie/python-wechaty --------
@@ -129,10 +129,19 @@ async def create_ding_room(bot, contact):
 
 class MyBot(Wechaty):
 
-    # def on_scan(self, status: ScanStatus, qr_code: Optional[str] = None,
-    #             data: Optional[str] = None):
-    #     qr_terminal(qr_code, 1)
-    #     log.info("{0}\n[{1}] Scan QR Code in above url to login: ".format(qr_code, status))
+    async def on_scan(self,
+                      qr_code: str,
+                      status: ScanStatus,
+                      data: Optional[str] = None):
+        """scan event, It will be triggered when you scan the qrcode to login.
+        And it will not be triggered when you have logined
+        """
+        if status == ScanStatus.Waiting:
+            print("qr_code: ", "https://wechaty.js.org/qrcode/" + qr_code)
+        else:
+            contact = self.Contact.load(self.contact_id)
+            print(f'user <{contact}> scan status: {status.name} , '
+                  f'qr_code: {qr_code}')
 
     def on_error(self, payload):
         log.info(str(payload))

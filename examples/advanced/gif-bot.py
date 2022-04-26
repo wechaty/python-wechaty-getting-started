@@ -72,11 +72,16 @@ class MyBot(Wechaty):
     async def on_login(self, contact: Contact):
         print(f'user: {contact} has login')
 
-    async def on_scan(self, status: ScanStatus, qr_code: Optional[str] = None,
+    async def on_scan(self,
+                      qr_code: str,
+                      status: ScanStatus,
                       data: Optional[str] = None):
-        contact = self.Contact.load(self.contact_id)
-        print(f'user <{contact}> scan status: {status.name} , '
-              f'qr_code: {qr_code}')
+        if status == ScanStatus.Waiting:
+            print("qr_code: ", "https://wechaty.js.org/qrcode/" + qr_code)
+        else:
+            contact = self.Contact.load(self.contact_id)
+            print(f'user <{contact}> scan status: {status.name} , '
+                  f'qr_code: {qr_code}')
 
 
 async def main():

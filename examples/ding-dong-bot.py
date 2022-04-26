@@ -13,10 +13,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import os
 import asyncio
-
-from urllib.parse import quote
+import os
+from typing import Optional
 
 from wechaty import (
     Contact,
@@ -43,15 +42,15 @@ async def on_message(msg: Message):
 
 
 async def on_scan(
-        qrcode: str,
-        status: ScanStatus,
-        _data,
+    qr_code: str,
+    status: ScanStatus,
+    data: Optional[str] = None
 ):
     """
     Scan Handler for the Bot
     """
-    print('Status: ' + str(status))
-    print('View QR Code Online: https://wechaty.js.org/qrcode/' + quote(qrcode))
+    if status == ScanStatus.Waiting:
+        print("scan status: ", status.name, "qr_code: ", "https://wechaty.js.org/qrcode/" + qr_code)
 
 
 async def on_login(user: Contact):
@@ -74,11 +73,11 @@ async def main():
     # Those types of puppet_service are supported natively.
     # https://wechaty.js.org/docs/puppet-services/paimon
     # https://wechaty.js.org/docs/puppet-services/wxwork
-    # 
+    #
     # Replace your token here and umcommt that line, you can just run this python file successfully!
     # os.environ['token'] = 'puppet_paimon_your_token'
     # os.environ['token'] = 'puppet_wxwork_your_token'
-    #     
+    #
     if 'WECHATY_PUPPET_SERVICE_TOKEN' not in os.environ:
         print('''
             Error: WECHATY_PUPPET_SERVICE_TOKEN is not found in the environment variables
@@ -88,9 +87,9 @@ async def main():
 
     bot = Wechaty()
 
-    bot.on('scan',      on_scan)
-    bot.on('login',     on_login)
-    bot.on('message',   on_message)
+    bot.on('scan', on_scan)
+    bot.on('login', on_login)
+    bot.on('message', on_message)
 
     await bot.start()
 
