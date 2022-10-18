@@ -17,12 +17,11 @@ import asyncio
 import logging
 from typing import Optional
 
-# waiting for wechaty-puppet new version
-from wechaty_puppet import ScanStatus  # type: ignore
-
 from wechaty import (
     Wechaty, Contact, Message
 )
+# waiting for wechaty-puppet new version
+from wechaty_puppet import ScanStatus  # type: ignore
 
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger(__name__)
@@ -33,6 +32,7 @@ class MyBot(Wechaty):
     listen wechaty event with inherited functions, which is more friendly for
     oop developer
     """
+
     def __init__(self):
         super().__init__()
         self.busy = False
@@ -56,20 +56,24 @@ class MyBot(Wechaty):
             elif text == '#free':
                 await from_contact.say('auto reply stopped.')
             elif text == '#busy':
-                self.busy= True
+                self.busy = True
                 await from_contact.say('auto reply enabled')
             else:
                 await from_contact.say(self.auto_reply_comment)
 
-
     async def on_login(self, contact: Contact):
         print(f'user: {contact} has login')
 
-    async def on_scan(self, status: ScanStatus, qr_code: Optional[str] = None,
+    async def on_scan(self,
+                      qr_code: str,
+                      status: ScanStatus,
                       data: Optional[str] = None):
-        contact = self.Contact.load(self.contact_id)
-        print(f'user <{contact}> scan status: {status.name} , '
-              f'qr_code: {qr_code}')
+        if status == ScanStatus.Waiting:
+            print("qr_code: ", "https://wechaty.js.org/qrcode/" + qr_code)
+        else:
+            contact = self.Contact.load(self.contact_id)
+            print(f'user <{contact}> scan status: {status.name} , '
+                  f'qr_code: {qr_code}')
 
 
 bot: Optional[MyBot] = None

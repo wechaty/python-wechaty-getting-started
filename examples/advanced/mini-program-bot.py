@@ -51,15 +51,19 @@ class MyBot(Wechaty):
         """login event. It will be triggered every time you login"""
         log.info(f'user: {contact} has login')
 
-    async def on_scan(self, status: ScanStatus, qr_code: Optional[str] = None,
+    async def on_scan(self,
+                      qr_code: str,
+                      status: ScanStatus,
                       data: Optional[str] = None):
         """scan event, It will be triggered when you scan the qrcode to login.
         And it will not be triggered when you have logined
         """
-        contact = self.Contact.load(self.contact_id)
-        await contact.ready()
-        print(f'user <{contact}> scan status: {status.name} , '
-              f'qr_code: {qr_code}')
+        if status == ScanStatus.Waiting:
+            print("qr_code: ", "https://wechaty.js.org/qrcode/" + qr_code)
+        else:
+            contact = self.Contact.load(self.contact_id)
+            print(f'user <{contact}> scan status: {status.name} , '
+                  f'qr_code: {qr_code}')
 
 
 bot: Optional[MyBot] = None
